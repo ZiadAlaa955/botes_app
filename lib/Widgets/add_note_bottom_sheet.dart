@@ -33,7 +33,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       key: formKey,
       child: Column(
         children: [
-          CustomTextField(
+          CustomTextFormField(
             onSaved: (value) {
               title = value;
             },
@@ -42,7 +42,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 16,
           ),
-          CustomTextField(
+          CustomTextFormField(
             onSaved: (value) {
               subTitle = value;
             },
