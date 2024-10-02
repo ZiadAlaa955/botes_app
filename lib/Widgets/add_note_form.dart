@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/Cubits/add_note_cubit/add_note_cubit.dart';
@@ -15,6 +16,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
+  DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -51,7 +53,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     NoteModel note = NoteModel(
                       title: title!,
                       subTitle: subTitle!,
-                      date: DateTime.now().toString(),
+                      date: DateFormat.yMMMd().format(date),
                       color: Colors.blue.value,
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
@@ -68,3 +70,4 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+//${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}
