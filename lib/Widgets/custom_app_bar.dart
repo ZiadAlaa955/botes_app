@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/Widgets/custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key, required this.title, required this.icon});
@@ -15,21 +16,7 @@ class CustomAppBar extends StatelessWidget {
             fontSize: 30,
           ),
         ),
-        Container(
-          height: 47,
-          width: 47,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.white.withOpacity(0.05),
-          ),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              icon,
-              size: 28,
-            ),
-          ),
-        ),
+        CustomIcon(icon: icon),
       ],
     );
   }

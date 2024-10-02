@@ -18,8 +18,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      autovalidateMode: autovalidateMode,
       key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         children: [
           CustomTextFormField(
@@ -56,9 +56,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
                   } else {
-                    setState(() {
-                      autovalidateMode = AutovalidateMode.always;
-                    });
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
                   }
                 },
               );
