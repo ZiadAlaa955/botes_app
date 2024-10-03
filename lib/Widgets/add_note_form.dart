@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/Cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/Models/note_model.dart';
+import 'package:notes_app/Widgets/colors_list_view.dart';
 import 'package:notes_app/Widgets/custom_button.dart';
 import 'package:notes_app/Widgets/custom_text_field.dart';
 
@@ -77,35 +78,5 @@ class _AddNoteFormState extends State<AddNoteForm> {
       color: Colors.blue.value,
     );
     return note;
-  }
-}
-
-class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 25,
-      backgroundColor: Colors.blue,
-    );
-  }
-}
-
-class ColorsListView extends StatelessWidget {
-  const ColorsListView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: ListView.builder(
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const ColorItem();
-        },
-      ),
-    );
   }
 }
