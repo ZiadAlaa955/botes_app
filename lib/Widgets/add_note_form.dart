@@ -40,23 +40,20 @@ class _AddNoteFormState extends State<AddNoteForm> {
             maxLines: 5,
           ),
           const SizedBox(
-            height: 40,
+            height: 20,
+          ),
+          const ColorsListView(),
+          const SizedBox(
+            height: 20,
           ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(
                 isLoading: state is AddNoteLoading ? true : false,
                 onTap: () {
-                  DateTime date = DateTime.now();
-                  String dateFormat = DateFormat.yMMMd().format(date);
+                  String dateFormat = DateFormat.yMMMd().format(DateTime.now());
                   if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    NoteModel note = NoteModel(
-                      title: title!,
-                      subTitle: subTitle!,
-                      date: dateFormat,
-                      color: Colors.blue.value,
-                    );
+                    NoteModel note = createNote(dateFormat);
                     BlocProvider.of<AddNoteCubit>(context).addNote(note);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
@@ -70,5 +67,45 @@ class _AddNoteFormState extends State<AddNoteForm> {
       ),
     );
   }
+
+  NoteModel createNote(String dateFormat) {
+    formKey.currentState!.save();
+    NoteModel note = NoteModel(
+      title: title!,
+      subTitle: subTitle!,
+      date: dateFormat,
+      color: Colors.blue.value,
+    );
+    return note;
+  }
 }
-//${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}
+
+class ColorItem extends StatelessWidget {
+  const ColorItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const CircleAvatar(
+      radius: 25,
+      backgroundColor: Colors.blue,
+    );
+  }
+}
+
+class ColorsListView extends StatelessWidget {
+  const ColorsListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: ListView.builder(
+        itemCount: 10,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return const ColorItem();
+        },
+      ),
+    );
+  }
+}
